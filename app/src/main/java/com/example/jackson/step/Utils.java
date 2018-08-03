@@ -59,37 +59,23 @@ public class Utils {
      *
      */
     private static String getLocationResultText(Context context, Location lastLocation) {
-//        if (locations.isEmpty()) {
-//            return context.getString(R.string.unknown_location);
-//        }
         StringBuilder sb = new StringBuilder();
         if(lastLocation!=null) {
+             sb.append("\n");
+             sb.append(lastLocation.getLatitude());
+             sb.append(", ");
+             sb.append(lastLocation.getLongitude());
+             sb.append(", ");
+             sb.append(lastLocation.getSpeed());
+             sb.append(", ");
+             sb.append(lastLocation.getTime());
 
-//            for (Location location : locations) {
-                sb.append("\n");
-                sb.append(lastLocation.getLatitude());
-                sb.append(", ");
-                sb.append(lastLocation.getLongitude());
-                sb.append(", ");
-                sb.append(lastLocation.getSpeed());
-                sb.append(", ");
-                sb.append(lastLocation.getTime());
-//            sb.append("\n");
-//            }
         }
         return sb.toString();
     }
 
 
 
-//    public static void setLocationUpdatesResult(Context context, List<Location> locations) {
-//        PreferenceManager.getDefaultSharedPreferences(context)
-//                .edit()
-//                .putString(KEY_LOCATION_UPDATES_RESULT, getLocationResultTitle(context, locations)
-//                        + "\n" + getLocationResultText(context, locations))
-//                .apply();
-//
-//    }
 
     public static void setLocationUpdatesResult(Context context, Location lastLocation) {
         PreferenceManager.getDefaultSharedPreferences(context)

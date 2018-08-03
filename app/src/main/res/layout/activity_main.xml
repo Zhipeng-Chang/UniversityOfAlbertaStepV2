@@ -29,28 +29,27 @@
         android:id="@+id/start_Timer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginStart="111dp"
+        android:layout_marginEnd="44dp"
+        android:layout_marginRight="44dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/btn1_selector"
         android:text="@string/start_timer"
         android:textColor="#0000ff"
-        app:layout_constraintBottom_toTopOf="@+id/request_updates"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/stop_Timer" />
+        app:layout_constraintTop_toBottomOf="@+id/mapView" />
 
     <Button
         android:id="@+id/stop_Timer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
         android:layout_marginLeft="44dp"
         android:layout_marginStart="44dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/btn1_selector"
         android:text="@string/stop_timer"
         android:textColor="#ff0000"
-        app:layout_constraintBottom_toTopOf="@+id/remove_updates"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mapView" />
 
 
     <Button
@@ -58,8 +57,9 @@
         android:layout_width="wrap_content"
 
         android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginBottom="31dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
         android:background="@drawable/btn_circle2_background"
         android:onClick="removeUpdatesButtonHandler"
         android:text="@string/finish_tracking"
@@ -71,26 +71,24 @@
         android:layout_width="wrap_content"
 
         android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="88dp"
+        android:layout_marginBottom="31dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
         android:background="@drawable/btn_circle_background"
         android:onClick="requestUpdatesButtonHandler"
         android:text="@string/start_tracking"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/remove_updates" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <com.esri.arcgisruntime.mapping.view.MapView
         android:id="@+id/mapView"
-        android:layout_width="340dp"
-        android:layout_height="298dp"
-        android:layout_marginBottom="8dp"
+        android:layout_width="261dp"
+        android:layout_height="237dp"
         android:layout_marginEnd="24dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/start_Timer"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/SelectCity">
 

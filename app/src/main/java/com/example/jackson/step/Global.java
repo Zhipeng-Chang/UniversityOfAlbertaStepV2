@@ -30,5 +30,4 @@ public class Global {
 
     public static InputStream is = null;
 
-    public static List<Geofence> triggeringGeofences = null;
 }

@@ -35,9 +35,6 @@ import com.example.jackson.step.database.DatabaseHelperWaitingTime;
 import com.example.jackson.step.locationTracking.LocationUpdatesIntentService;
 import com.google.android.gms.location.ActivityRecognitionClient;
 import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.Geofence;
-import com.google.android.gms.location.GeofencingClient;
-import com.google.android.gms.location.GeofencingRequest;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -66,6 +63,7 @@ public class MainActivity extends AppCompatActivity
     private ActivityRecognitionClient mActivityRecognitionClient;
     private LocationRequest mLocationRequest;
     private FusedLocationProviderClient mFusedLocationClient;
+    private PendingIntent mGeofencePendingIntent;
 
 
     // UI elements.
@@ -152,7 +150,9 @@ public class MainActivity extends AppCompatActivity
         if (!checkPermissions()) {
             requestPermissions();
         }
-
+        mActivityRecognitionClient = new ActivityRecognitionClient(this);
+        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+        createLocationRequest();
         setButtonsEnabledState();
 
     }
@@ -197,10 +197,6 @@ public class MainActivity extends AppCompatActivity
         mLocationRequest.setMaxWaitTime(MAX_WAIT_TIME);
     }
 
-    /**
-     * Builds and returns a GeofencingRequest. Specifies the list of geofences to be monitored.
-     * Also specifies how the geofence notifications are initially triggered.
-     */
 
 
 
@@ -209,7 +205,13 @@ public class MainActivity extends AppCompatActivity
      * {@link ActivityRecognitionClient#requestActivityUpdates(long, PendingIntent)}.
      * Registers success and failure callbacks.
      */
+    @SuppressLint("MissingPermission")
     public void requestUpdatesButtonHandler(View view) {
+
+        if (!checkPermissions()) {
+            requestPermissions();
+            return;
+        }
         view.startAnimation(animAlpha);
         Log.i(TAG, "button clicked");
 
@@ -268,6 +270,9 @@ public class MainActivity extends AppCompatActivity
                         Toast.LENGTH_SHORT)
                         .show();
                 setActivityUpdatesRequestedState(false);
+                // Reset the display.
+//                _detectedActivityType.setText("");
+//                _detectedActivityConfidence.setProgress(0);
 
 
             }
@@ -295,8 +300,8 @@ public class MainActivity extends AppCompatActivity
             Log.i(TAG, "request location updates");
             Utils.setRequestingLocationUpdates(this, true);
             setButtonsEnabledState();
-            Task<Void> requestLocationTask = mFusedLocationClient.requestLocationUpdates(mLocationRequest, getLocationUpdatesPendingIntent());
-            requestLocationTask.addOnSuccessListener(new OnSuccessListener<Void>() {
+            Task<Void> task1 = mFusedLocationClient.requestLocationUpdates(mLocationRequest, getLocationUpdatesPendingIntent());
+            task1.addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void result) {
                     Toast.makeText(mContext,
@@ -310,7 +315,7 @@ public class MainActivity extends AppCompatActivity
                 }
             });
 
-            requestLocationTask.addOnFailureListener(new OnFailureListener() {
+            task1.addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
                     Log.w(TAG, "location updates not enabled.");
@@ -361,7 +366,8 @@ public class MainActivity extends AppCompatActivity
         // requestActivityUpdates() and removeActivityUpdates().
         return PendingIntent.getService(this, 1, intent, PendingIntent.FLAG_UPDATE_CURRENT);
     }
-//TODO DECIDE HOW TO DEAL WITH GEOFENCE INTENT SERVICE: JobIntentSerive & BroadcastReceiver VS. IntentService
+
+
 
     /**
      * Ensures that only one button is enabled at any time. The Request Activity Updates button is
@@ -427,7 +433,14 @@ public class MainActivity extends AppCompatActivity
     private void updateLocation() {
         String lastUpdate = Utils.getLocationUpdatesResult(this);
         Log.i(TAG, "updateLocationDisplay: " + lastUpdate);
-
+//        if (lastUpdate != null) {
+//            String[] lastLocationInfo = lastUpdate.split(", ");
+//            if (lastLocationInfo.length >= 3) {
+//                _lat.setText(lastLocationInfo[0]);
+//                _lon.setText(lastLocationInfo[1]);
+//                _speed.setText(lastLocationInfo[2]);
+//            }
+//        }
     }
 
     public void recenterMapView (View view){
@@ -437,6 +450,8 @@ public class MainActivity extends AppCompatActivity
     }
 
 
+//    permission control
+
     private boolean checkPermissions() {
         int permissionState = ActivityCompat.checkSelfPermission(this,
                 Manifest.permission.ACCESS_FINE_LOCATION);
@@ -445,14 +460,14 @@ public class MainActivity extends AppCompatActivity
 
     private void requestPermissions() {
 
-            Log.i(TAG, "Requesting permission");
-            // Request permission. It's possible this can be auto answered if device policy
-            // sets the permission in a given state or the user denied the permission
-            // previously and checked "Never ask again".
-            ActivityCompat.requestPermissions(MainActivity.this,
-                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                    REQUEST_PERMISSIONS_REQUEST_CODE);
-        }
+        Log.i(TAG, "Requesting permission");
+        // Request permission. It's possible this can be auto answered if device policy
+        // sets the permission in a given state or the user denied the permission
+        // previously and checked "Never ask again".
+        ActivityCompat.requestPermissions(MainActivity.this,
+                new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                REQUEST_PERMISSIONS_REQUEST_CODE);
+    }
 
 
 }
