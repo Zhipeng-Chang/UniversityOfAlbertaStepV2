@@ -63,7 +63,6 @@ public class MainActivity extends AppCompatActivity
     private ActivityRecognitionClient mActivityRecognitionClient;
     private LocationRequest mLocationRequest;
     private FusedLocationProviderClient mFusedLocationClient;
-    private PendingIntent mGeofencePendingIntent;
 
 
     // UI elements.
@@ -71,9 +70,6 @@ public class MainActivity extends AppCompatActivity
     private Button mRemoveUpdatesButton;
     private Button startTimerButton;
     private Button stopTimerButton;
-    private Button selectCityButton;
-    private ImageView recenterImage;
-
     private MapView mMapView;
     private LocationDisplay mLocationDisplay;
 
@@ -109,8 +105,6 @@ public class MainActivity extends AppCompatActivity
         stopTimerButton = (Button) findViewById(R.id.stop_Timer);
         animAlpha = AnimationUtils.loadAnimation(this, R.anim.anim_alpha);
         mMapView = (MapView) findViewById(R.id.mapView);
-        recenterImage = (ImageView) findViewById(R.id.recenterImage);
-        selectCityButton = (Button) findViewById(R.id.SelectCity);
 
 
 
@@ -205,16 +199,8 @@ public class MainActivity extends AppCompatActivity
      * {@link ActivityRecognitionClient#requestActivityUpdates(long, PendingIntent)}.
      * Registers success and failure callbacks.
      */
-    @SuppressLint("MissingPermission")
     public void requestUpdatesButtonHandler(View view) {
-
-        if (!checkPermissions()) {
-            requestPermissions();
-            return;
-        }
         view.startAnimation(animAlpha);
-        Log.i(TAG, "button clicked");
-
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
         Task<Void> task = mActivityRecognitionClient.requestActivityUpdates(
