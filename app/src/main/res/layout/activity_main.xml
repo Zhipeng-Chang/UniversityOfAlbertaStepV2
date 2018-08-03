@@ -46,10 +46,10 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="50dp"
         android:onClick="removeUpdatesButtonHandler"
+        android:text="@string/stop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/stop_Timer"
-        tools:text="Stop" />
+        app:layout_constraintTop_toBottomOf="@+id/stop_Timer" />
 
     <Button
         android:id="@+id/request_updates"
@@ -61,10 +61,10 @@
         android:layout_marginRight="16dp"
         android:layout_marginTop="50dp"
         android:onClick="requestUpdatesButtonHandler"
+        android:text="@string/start"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/start_Timer"
-        tools:text="Start" />
+        app:layout_constraintTop_toBottomOf="@+id/start_Timer" />
 
     <com.esri.arcgisruntime.mapping.view.MapView
         android:id="@+id/mapView"

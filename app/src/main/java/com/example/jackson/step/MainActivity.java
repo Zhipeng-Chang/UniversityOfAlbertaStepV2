@@ -2,7 +2,6 @@ package com.example.jackson.step;
 
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
@@ -21,7 +20,6 @@ import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
-import android.widget.ImageView;
 
 import android.widget.Toast;
 
@@ -30,20 +28,16 @@ import com.esri.arcgisruntime.mapping.ArcGISMap;
 import com.esri.arcgisruntime.mapping.view.LocationDisplay;
 import com.esri.arcgisruntime.mapping.view.MapView;
 
-import com.example.jackson.step.database.DatabaseHelper;
 import com.example.jackson.step.database.DatabaseHelperWaitingTime;
 import com.example.jackson.step.locationTracking.LocationUpdatesIntentService;
 import com.google.android.gms.location.ActivityRecognitionClient;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 
-import java.io.InputStream;
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity
         implements SharedPreferences.OnSharedPreferenceChangeListener {
@@ -138,9 +132,6 @@ public class MainActivity extends AppCompatActivity
         if (!mLocationDisplay.isStarted())
             mLocationDisplay.startAsync();
 
-
-
-
         if (!checkPermissions()) {
             requestPermissions();
         }
@@ -181,8 +172,6 @@ public class MainActivity extends AppCompatActivity
     }
 
 
-
-
     private void createLocationRequest() {
         mLocationRequest = new LocationRequest();
         mLocationRequest.setInterval(UPDATE_INTERVAL);
@@ -190,8 +179,6 @@ public class MainActivity extends AppCompatActivity
         mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
         mLocationRequest.setMaxWaitTime(MAX_WAIT_TIME);
     }
-
-
 
 
     /**
@@ -203,11 +190,11 @@ public class MainActivity extends AppCompatActivity
         view.startAnimation(animAlpha);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
-        Task<Void> task = mActivityRecognitionClient.requestActivityUpdates(
+        Task<Void> requestUpdatesTask = mActivityRecognitionClient.requestActivityUpdates(
                 Constants.DETECTION_INTERVAL_IN_MILLISECONDS,
                 getActivityDetectionPendingIntent());
 
-        task.addOnSuccessListener(new OnSuccessListener<Void>() {
+        requestUpdatesTask.addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void result) {
                 Toast.makeText(mContext,
@@ -222,7 +209,7 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        task.addOnFailureListener(new OnFailureListener() {
+        requestUpdatesTask.addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
                 Log.w(TAG, "activity updates not enabled");
@@ -246,9 +233,9 @@ public class MainActivity extends AppCompatActivity
     public void removeUpdatesButtonHandler(View view) {
         view.startAnimation(animAlpha);
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-        Task<Void> task = mActivityRecognitionClient.removeActivityUpdates(
+        Task<Void> removeUpdatesTask = mActivityRecognitionClient.removeActivityUpdates(
                 getActivityDetectionPendingIntent());
-        task.addOnSuccessListener(new OnSuccessListener<Void>() {
+        removeUpdatesTask.addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void result) {
                 Toast.makeText(mContext,
@@ -256,15 +243,10 @@ public class MainActivity extends AppCompatActivity
                         Toast.LENGTH_SHORT)
                         .show();
                 setActivityUpdatesRequestedState(false);
-                // Reset the display.
-//                _detectedActivityType.setText("");
-//                _detectedActivityConfidence.setProgress(0);
-
-
             }
         });
 
-        task.addOnFailureListener(new OnFailureListener() {
+        removeUpdatesTask.addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
                 Log.w(TAG, "Failed to enable activity recognition.");
@@ -286,8 +268,8 @@ public class MainActivity extends AppCompatActivity
             Log.i(TAG, "request location updates");
             Utils.setRequestingLocationUpdates(this, true);
             setButtonsEnabledState();
-            Task<Void> task1 = mFusedLocationClient.requestLocationUpdates(mLocationRequest, getLocationUpdatesPendingIntent());
-            task1.addOnSuccessListener(new OnSuccessListener<Void>() {
+            Task<Void> requestLocationTask = mFusedLocationClient.requestLocationUpdates(mLocationRequest, getLocationUpdatesPendingIntent());
+            requestLocationTask.addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void result) {
                     Toast.makeText(mContext,
@@ -301,7 +283,7 @@ public class MainActivity extends AppCompatActivity
                 }
             });
 
-            task1.addOnFailureListener(new OnFailureListener() {
+            requestLocationTask.addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
                     Log.w(TAG, "location updates not enabled.");
@@ -337,8 +319,6 @@ public class MainActivity extends AppCompatActivity
         Intent intent = new Intent(this, DetectedActivitiesIntentService.class);
         Log.i(TAG, "getActivityPendingIntent");
 
-        // use FLAG_UPDATE_CURRENT so that we get the same pending intent back when calling
-        // requestActivityUpdates() and removeActivityUpdates().
         return PendingIntent.getService(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
     }
 
@@ -347,9 +327,6 @@ public class MainActivity extends AppCompatActivity
         intent.setAction(LocationUpdatesIntentService.ACTION_PROCESS_UPDATES);
         Log.i(TAG, "getLocationPendingIntent");
 
-
-        // use FLAG_UPDATE_CURRENT so that we get the same pending intent back when calling
-        // requestActivityUpdates() and removeActivityUpdates().
         return PendingIntent.getService(this, 1, intent, PendingIntent.FLAG_UPDATE_CURRENT);
     }
 
@@ -419,14 +396,6 @@ public class MainActivity extends AppCompatActivity
     private void updateLocation() {
         String lastUpdate = Utils.getLocationUpdatesResult(this);
         Log.i(TAG, "updateLocationDisplay: " + lastUpdate);
-//        if (lastUpdate != null) {
-//            String[] lastLocationInfo = lastUpdate.split(", ");
-//            if (lastLocationInfo.length >= 3) {
-//                _lat.setText(lastLocationInfo[0]);
-//                _lon.setText(lastLocationInfo[1]);
-//                _speed.setText(lastLocationInfo[2]);
-//            }
-//        }
     }
 
     public void recenterMapView (View view){
@@ -447,9 +416,6 @@ public class MainActivity extends AppCompatActivity
     private void requestPermissions() {
 
         Log.i(TAG, "Requesting permission");
-        // Request permission. It's possible this can be auto answered if device policy
-        // sets the permission in a given state or the user denied the permission
-        // previously and checked "Never ask again".
         ActivityCompat.requestPermissions(MainActivity.this,
                 new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                 REQUEST_PERMISSIONS_REQUEST_CODE);

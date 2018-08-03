@@ -70,7 +70,7 @@ public class CreateTrackPointActivity extends AppCompatActivity {
         Log.i(TAG, "TrackedPoint has created" +A.toString());
 
         //TODO Data table should be modified.
-        boolean isInserted = dbHelper.insertData(Global.location, activityType, activityConfidence, crosswalkCheck, Global.waitingTime, Global.geofenceTransitionType, Global.triggeringGeofenceIDList);
+        boolean isInserted = dbHelper.insertData(Global.location, activityType, activityConfidence, crosswalkCheck, Global.waitingTime);
 
         if(isInserted == true) {
             Log.i(TAG, "TrackedPoint saved" + A.toString());

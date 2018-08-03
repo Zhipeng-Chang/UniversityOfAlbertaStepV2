@@ -6,13 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.location.Location;
-
-import com.example.jackson.step.Global;
-import com.google.android.gms.location.DetectedActivity;
-
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Locale;
 
 /**
@@ -37,8 +31,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String col_7 = "ACTIVITY_CONFIDENCE";
     public static final String col_8 = "CROSSWALK";
     public static final String col_9 = "WAITINGTIME";
-    public static final String col_10 = "GEOFENCETYPE";
-    public static final String col_11 = "TRIGGERING_GEOFENCE_ID_LIST";
 
 
     //default constructor. database created with this.
@@ -53,7 +45,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
 
         db.execSQL("CREATE TABLE IF NOT EXISTS  " + TABLE_NAME+" (ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                "LONGITUDE DOUBLE, LATITUDE DOUBLE, DATETIME TEXT, SPEED FLOAT, ACTIVITY_TITLE TEXT, ACTIVITY_CONFIDENCE INTEGER, CROSSWALK BOOLEAN, WAITINGTIME LONG, GEOFENCETYPE TEXT, TRIGGERING_GEOFENCE_ID_LIST TEXT)");
+                "LONGITUDE DOUBLE, LATITUDE DOUBLE, DATETIME TEXT, SPEED FLOAT, ACTIVITY_TITLE TEXT, ACTIVITY_CONFIDENCE INTEGER, CROSSWALK BOOLEAN, WAITINGTIME LONG)");
 
     }
 
@@ -65,7 +57,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-    public boolean insertData (Location location, String ActivityType, int ACTIVITY_CONFIDENCE, boolean CROSSWALK, long WAITINGTIME, String GeofenceType, String TriggeringGeofenceIDList){
+    public boolean insertData (Location location, String ActivityType, int ACTIVITY_CONFIDENCE, boolean CROSSWALK, long WAITINGTIME){
         SQLiteDatabase db = this.getWritableDatabase(); //check database creation
         ContentValues contentValues = new ContentValues();
         SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss", Locale.CANADA);
@@ -78,8 +70,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(col_7, ACTIVITY_CONFIDENCE);
         contentValues.put(col_8, CROSSWALK);
         contentValues.put(col_9, WAITINGTIME);
-        contentValues.put(col_10, GeofenceType);
-        contentValues.put(col_11, TriggeringGeofenceIDList);
 
         long result = db.insert(TABLE_NAME, null, contentValues);
         if (result == -1)
