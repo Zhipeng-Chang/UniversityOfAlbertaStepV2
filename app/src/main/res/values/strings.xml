@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Step</string>
+    <string name="app_name">StepV2</string>
     <!-- Activity detection strings -->
     <string name="in_vehicle">In a vehicle</string>
     <string name="on_bicycle">On a bicycle</string>

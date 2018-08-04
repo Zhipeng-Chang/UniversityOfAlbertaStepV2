@@ -1,20 +1,11 @@
 package com.example.jackson.step;
 
-import android.content.Context;
-import android.content.Intent;
 import android.content.res.Resources;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.widget.Toast;
-
 import com.example.jackson.step.database.DatabaseHelper;
-import com.example.jackson.step.database.DatabaseHelperWaitingTime;
-import com.google.android.gms.location.Geofence;
-
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 
@@ -31,9 +22,6 @@ public class CreateTrackPointActivity extends AppCompatActivity {
     public float speed;
     public long timeStamp;
     public boolean crosswalkCheck;
-
-
-
 
 
 
