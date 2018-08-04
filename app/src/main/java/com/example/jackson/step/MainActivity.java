@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity
     // location update setting 
     private static final int REQUEST_PERMISSIONS_REQUEST_CODE = 34;
     private static final long UPDATE_INTERVAL = 3000; // Every 3 seconds.
-    private static final long FASTEST_UPDATE_INTERVAL = 1000; // 3 seconds
+    private static final long FASTEST_UPDATE_INTERVAL = 1000; // 1 seconds
     private static final long MAX_WAIT_TIME = UPDATE_INTERVAL * 5; // 15 seconds.
 
 
@@ -106,8 +106,11 @@ public class MainActivity extends AppCompatActivity
         startTimerButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 v.startAnimation(animAlpha);
+                Toast.makeText(mContext,
+                        "Timer started",
+                        Toast.LENGTH_SHORT)
+                        .show();
                 double startTime = System.currentTimeMillis();
-                Log.i(TAG, "startTime recorded");
                 dbHelperWT.insertData(startTime, "START");
                 startTimerButton.setEnabled(false);
                 stopTimerButton.setEnabled(true);
@@ -117,6 +120,10 @@ public class MainActivity extends AppCompatActivity
         stopTimerButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 v.startAnimation(animAlpha);
+                Toast.makeText(mContext,
+                        "Timer stoped",
+                        Toast.LENGTH_SHORT)
+                        .show();
                 double stopTime = System.currentTimeMillis();
                 dbHelperWT.insertData(stopTime, "STOP");
                 startTimerButton.setEnabled(true);
@@ -198,7 +205,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onSuccess(Void result) {
                 Toast.makeText(mContext,
-                        "activity updates enabled",
+                        "Tracking strated",
                         Toast.LENGTH_SHORT)
                         .show();
                 setActivityUpdatesRequestedState(true);
@@ -212,9 +219,8 @@ public class MainActivity extends AppCompatActivity
         requestUpdatesTask.addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Log.w(TAG, "activity updates not enabled");
                 Toast.makeText(mContext,
-                        "activity updates not enabled",
+                        "Tracking nor started",
                         Toast.LENGTH_SHORT)
                         .show();
                 setActivityUpdatesRequestedState(false);
@@ -239,7 +245,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onSuccess(Void result) {
                 Toast.makeText(mContext,
-                        "activity update stops",
+                        "Tracking stoped",
                         Toast.LENGTH_SHORT)
                         .show();
                 setActivityUpdatesRequestedState(false);
@@ -249,8 +255,7 @@ public class MainActivity extends AppCompatActivity
         removeUpdatesTask.addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Log.w(TAG, "Failed to enable activity recognition.");
-                Toast.makeText(mContext, "activity updates doesn't stop",
+                Toast.makeText(mContext, "Tracking didn't stop",
                         Toast.LENGTH_SHORT).show();
                 setActivityUpdatesRequestedState(true);
             }
@@ -272,23 +277,14 @@ public class MainActivity extends AppCompatActivity
             requestLocationTask.addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void result) {
-                    Toast.makeText(mContext,
-                            "location updates enabled",
-                            Toast.LENGTH_SHORT)
-                            .show();
                     Utils.setRequestingLocationUpdates(mContext, true);
-                    Log.i(TAG, "setRequestedState");
                     updateLocation();
-                    Log.i(TAG, "updateLocation");
                 }
             });
 
             requestLocationTask.addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
-                    Log.w(TAG, "location updates not enabled.");
-                    Toast.makeText(mContext, "location updates not enabled.",
-                            Toast.LENGTH_SHORT).show();
                     setActivityUpdatesRequestedState(true);
                 }
             });

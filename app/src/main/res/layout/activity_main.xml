@@ -9,42 +9,63 @@
     android:paddingBottom="16dp"
     android:paddingEnd="16dp"
     android:paddingStart="16dp"
-    android:paddingTop="10dp">
+    android:paddingTop="10dp"
+    android:background="@drawable/background">
+
+    <ImageView
+        android:id="@+id/recenterImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:adjustViewBounds="false"
+        android:contentDescription="@string/recenter_the_map"
+        android:onClick="recenterMapView"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@+id/mapView"
+        app:layout_constraintEnd_toEndOf="@+id/mapView"
+        app:layout_constraintHorizontal_bias="0.995"
+        app:layout_constraintStart_toStartOf="@+id/mapView"
+        app:layout_constraintTop_toTopOf="@+id/mapView"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/arcgisruntime_location_display_default_symbol" />
 
     <Button
         android:id="@+id/start_Timer"
-        android:layout_width="wrap_content"
+        android:layout_width="115dp"
         android:layout_height="0dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginTop="24dp"
         android:text="@string/start_timer"
-        android:textColor="#0000ff"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mapView" />
 
     <Button
         android:id="@+id/stop_Timer"
-        android:layout_width="wrap_content"
+        android:layout_width="115dp"
         android:layout_height="0dp"
         android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
         android:text="@string/stop_timer"
-        android:textColor="#ff0000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mapView" />
 
 
     <Button
         android:id="@+id/remove_updates"
-        android:layout_width="wrap_content"
+        android:layout_width="115dp"
 
-        android:layout_height="0dp"
+        android:layout_height="65dp"
         android:layout_marginBottom="24dp"
         android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         android:onClick="removeUpdatesButtonHandler"
         android:text="@string/stop"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -53,13 +74,13 @@
 
     <Button
         android:id="@+id/request_updates"
-        android:layout_width="wrap_content"
+        android:layout_width="115dp"
 
-        android:layout_height="0dp"
+        android:layout_height="65dp"
         android:layout_marginBottom="24dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         android:onClick="requestUpdatesButtonHandler"
         android:text="@string/start"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -84,28 +105,6 @@
         app:layout_constraintVertical_bias="1.0">
 
     </com.esri.arcgisruntime.mapping.view.MapView>
-
-    <ImageView
-        android:id="@+id/recenterImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:adjustViewBounds="false"
-        android:contentDescription="@string/recenter_the_map"
-        android:onClick="recenterMapView"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="@+id/mapView"
-        app:layout_constraintEnd_toEndOf="@+id/mapView"
-        app:layout_constraintHorizontal_bias="0.995"
-        app:layout_constraintStart_toStartOf="@+id/mapView"
-        app:layout_constraintTop_toTopOf="@+id/mapView"
-        app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/arcgisruntime_location_display_default_symbol" />
 
 
 </android.support.constraint.ConstraintLayout>
