@@ -45,11 +45,6 @@ public class LocationUpdatesIntentService extends IntentService {
         Log.i(TAG, "LocationService open");
         IntentFilter filter = new IntentFilter();
         filter.addAction(LocationUpdatesIntentService.ACTION_FINISHED);
-
-
-
-
-//        myDB = new DatabaseHelper(this);
     }
     @Override
     public void onDestroy(){
@@ -68,10 +63,6 @@ public class LocationUpdatesIntentService extends IntentService {
             if (ACTION_PROCESS_UPDATES.equals(action)) {
                 LocationResult result = LocationResult.extractResult(intent);
                 if (result != null) {
-//                    List<Location> locations = result.getLocations();
-//                    Utils.setLocationUpdatesResult(this, locations);
-//                    Log.i(TAG, Utils.getLocationUpdatesResult(this));
-
                     Location lastLocation = result.getLastLocation();
 
                     Global.location = lastLocation;
