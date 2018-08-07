@@ -220,7 +220,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onFailure(@NonNull Exception e) {
                 Toast.makeText(mContext,
-                        "Tracking nor started",
+                        "Tracking not started",
                         Toast.LENGTH_SHORT)
                         .show();
                 setActivityUpdatesRequestedState(false);
