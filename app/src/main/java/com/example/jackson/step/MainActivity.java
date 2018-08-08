@@ -255,7 +255,7 @@ public class MainActivity extends AppCompatActivity
         removeUpdatesTask.addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(mContext, "Tracking didn't stop",
+                Toast.makeText(mContext, "Tracking didn't stop.",
                         Toast.LENGTH_SHORT).show();
                 setActivityUpdatesRequestedState(true);
             }
