@@ -63,5 +63,9 @@
     <string name="stop_timer">stop timer</string>
     <string name="stop">Stop</string>
     <string name="start">Start</string>
+    <string name="Agree">Agree</string>
+    <string name="Decline">Decline</string>
+    <string name="consent">consent</string>
+    <string name="consent_text">You may have seen or heard several things in the news recently about the future of the Aeroplan program.   I want to reassure you that we are committed to building Canada\'s best travel loyalty program providing you with exceptional value on flight rewards, increased flexibility and an enhanced experience. This includes the ability to redeem your miles for any seat on any airline (including Air Canada), at any time, to anywhere you want to go come July 2020.   We\'re proud to announce a comprehensive partnership with Porter that will allow you to earn and redeem Aeroplan Miles with them beginning in July 2020. We\'re also in active discussions with other major airlines and airline networks, with more exciting announcements to come. We remain committed to maintaining flight reward mileage levels that start at the same amounts as today on members\' most redeemed destinations. For more details about our future plans, click here.   In the meantime, you will continue to earn and redeem with Air Canada and Star Alliance member airlines through June 2020 under our current agreement.   I realize that you will have questions about the program between now and 2020. I will continue to provide you with information as we work toward building a better Aeroplan program for you. You can find answers to more questions here.</string>
 
 </resources>

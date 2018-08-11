@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity
 
     protected static final String TAG = "MainActivity";
     private Context mContext;
+    private MainActivity activity = this;
 
     // location update setting 
     private static final int REQUEST_PERMISSIONS_REQUEST_CODE = 34;
@@ -77,20 +78,30 @@ public class MainActivity extends AppCompatActivity
     @SuppressWarnings("unchecked")
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         this.setTitle("STEPS");
-
-        mContext = this;
-        dbHelperWT = new DatabaseHelperWaitingTime(this);
-        myDB = dbHelperWT.getWritableDatabase();
-        dbHelperWT.onCreate(myDB);
-
 
         PreferenceManager.getDefaultSharedPreferences(this)
                 .edit()
                 .clear()
                 .apply();
+
+        SharedPreferences mPreferences = getSharedPreferences("CurrentUser",
+                MODE_PRIVATE);
+        boolean Agree = mPreferences.getBoolean("agree", false);
+        if (Agree == false){
+            Intent intent = new Intent(activity, ConsentAgreeActivity.class);
+            startActivity(intent);
+            finish();
+        }
+        //PreferenceManager.getDefaultSharedPreferences(this).edit().putBoolean("Global.Agree", true).apply();
+
+        mContext = this;
+        dbHelperWT = new DatabaseHelperWaitingTime(this);
+        myDB = dbHelperWT.getWritableDatabase();
+        dbHelperWT.onCreate(myDB);
 
         // Get the UI widgets.
         mRequestUpdatesButton = (Button) findViewById(R.id.request_updates);
