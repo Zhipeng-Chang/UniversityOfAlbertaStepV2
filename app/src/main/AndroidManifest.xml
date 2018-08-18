@@ -33,8 +33,9 @@
             android:exported="false" />
 
         <activity android:name=".MapActivity" />
-        <activity android:name=".CreateTrackPointActivity"></activity>
-        <activity android:name=".ConsentAgreeActivity"></activity>
+        <activity android:name=".CreateTrackPointActivity" />
+        <activity android:name=".ConsentAgreeActivity" />
+        <activity android:name=".QuestionnaireActivity"></activity>
     </application>
 
 </manifest>

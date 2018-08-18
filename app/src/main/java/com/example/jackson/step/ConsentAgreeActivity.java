@@ -36,7 +36,7 @@ public class ConsentAgreeActivity extends AppCompatActivity {
                 SharedPreferences.Editor editor = mPreferences.edit();
                 editor.putBoolean("agree", true);
                 editor.commit();
-                Intent intent = new Intent(activity, MainActivity.class);
+                Intent intent = new Intent(activity, QuestionnaireActivity.class);
                 startActivity(intent);
                 finish();
 

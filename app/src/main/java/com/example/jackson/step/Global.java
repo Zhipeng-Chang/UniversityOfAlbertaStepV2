@@ -25,6 +25,4 @@ public class Global {
 
     public static InputStream is = null;
 
-    public static boolean Agree = false;
-
 }

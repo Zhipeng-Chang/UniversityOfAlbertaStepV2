@@ -91,8 +91,15 @@ public class MainActivity extends AppCompatActivity
         SharedPreferences mPreferences = getSharedPreferences("CurrentUser",
                 MODE_PRIVATE);
         boolean Agree = mPreferences.getBoolean("agree", false);
-        if (Agree == false){
+        boolean Answered = mPreferences.getBoolean("questionaire", false);
+        if (Agree == false && Answered == false){
             Intent intent = new Intent(activity, ConsentAgreeActivity.class);
+            startActivity(intent);
+            finish();
+        }
+
+        else if (Agree == true && Answered == false){
+            Intent intent = new Intent(activity, QuestionnaireActivity.class);
             startActivity(intent);
             finish();
         }
