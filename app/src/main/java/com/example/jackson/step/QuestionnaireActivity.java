@@ -117,12 +117,12 @@ public class QuestionnaireActivity extends AppCompatActivity implements AdapterV
             mAnswer = spinner.getSelectedItem().toString();
             if (mAnswer.contains("(please specify)")){
                 mSpecify = specifyInput.getText().toString();
-                Toast.makeText(QuestionnaireActivity.this, mSpecify, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(QuestionnaireActivity.this, mSpecify, Toast.LENGTH_SHORT).show();
                 specifyInput.getText().clear();
                 mSpecify=null;
             }
             else {
-                Toast.makeText(QuestionnaireActivity.this, mAnswerFromSpinner, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(QuestionnaireActivity.this, mAnswerFromSpinner, Toast.LENGTH_SHORT).show();
             }
 
         }
