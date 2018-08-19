@@ -16,7 +16,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-// @ From https://github.com/skooltch84/MultipleChoiceQuiz/tree/master/app/src/main/java/com/skooltchdev/multiplechoicequiz
 
 public class QuestionnaireActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 

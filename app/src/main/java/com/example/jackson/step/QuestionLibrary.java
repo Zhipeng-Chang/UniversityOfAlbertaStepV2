@@ -1,6 +1,5 @@
 package com.example.jackson.step;
 
-// @ From https://github.com/skooltch84/MultipleChoiceQuiz/tree/master/app/src/main/java/com/skooltchdev/multiplechoicequiz
 
 public class QuestionLibrary {
 
