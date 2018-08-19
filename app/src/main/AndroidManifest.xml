@@ -32,10 +32,11 @@
             android:name=".DetectedActivitiesIntentService"
             android:exported="false" />
 
-        <activity android:name=".MapActivity" />
+        <activity android:name=".MapActivity"/>
         <activity android:name=".CreateTrackPointActivity" />
         <activity android:name=".ConsentAgreeActivity" />
-        <activity android:name=".QuestionnaireActivity"></activity>
+        <activity android:name=".QuestionnaireActivity"
+            android:windowSoftInputMode="adjustPan"/>
     </application>
 
 </manifest>

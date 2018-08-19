@@ -9,11 +9,13 @@ android:paddingLeft="16dp"
 android:paddingRight="16dp"
 android:paddingTop="16dp"
 android:orientation="vertical"
-tools:context=".QuestionnaireActivity">
+
+    tools:context=".QuestionnaireActivity"
+android:background="@drawable/background">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="73dp"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="40dp"
         android:padding="8dp">
 
@@ -23,8 +25,10 @@ tools:context=".QuestionnaireActivity">
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
-            android:text="Questions answered"
-            android:textSize="20sp" />
+            android:text="Questions Number"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:layout_alignParentLeft="true" />
 
         <TextView
             android:id="@+id/score"
@@ -33,18 +37,22 @@ tools:context=".QuestionnaireActivity">
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:text="0"
-            android:textSize="20sp" />
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:layout_alignParentRight="true" />
 
     </RelativeLayout>
 
     <TextView
         android:id="@+id/question"
         android:layout_width="match_parent"
-        android:layout_height="141dp"
+        android:layout_height="172dp"
         android:layout_marginBottom="40dp"
         android:padding="8dp"
         android:text="Question"
-        android:textSize="20sp" />
+        android:textColor="@android:color/white"
+        android:textSize="30sp"
+        android:scrollbars = "vertical"/>
 
 
     <Spinner
@@ -59,6 +67,17 @@ tools:context=".QuestionnaireActivity">
         android:text="bird"
         android:textColor="#fff" />
 
+    <EditText
+        android:id="@+id/specifyInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:ems="10"
+        android:hint="Please specify"
+        android:inputType="textPersonName"
+        android:padding="8dp"
+        android:textColor="@android:color/white" />
+
     <Button
         android:id="@+id/next"
         android:layout_width="match_parent"
@@ -69,14 +88,14 @@ tools:context=".QuestionnaireActivity">
         android:text="Next"
         android:textColor="#fff" />
 
-<Button
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="quit"
-    android:background="#B71C1C"
-    android:textColor="#fff"
-    android:padding="8dp"
-    android:layout_marginBottom="24dp"
-    android:id="@+id/quit"/>
+    <Button
+        android:id="@+id/quit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:background="#B71C1C"
+        android:padding="8dp"
+        android:text="quit"
+        android:textColor="#fff" />
 
 </LinearLayout>
