@@ -1,110 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
     android:background="#f0ffa0"
     android:scrollIndicators="right"
     android:scrollbarStyle="insideOverlay"
     android:scrollbars="vertical">
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:tools="http://schemas.android.com/tools"
-android:id="@+id/activity_quiz"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:paddingBottom="16dp"
-android:paddingLeft="16dp"
-android:paddingRight="16dp"
-android:paddingTop="16dp"
-android:orientation="vertical"
-
-    tools:context=".QuestionnaireActivity"
-android:background="@drawable/background">
-
-    <RelativeLayout
-        android:layout_width="match_parent"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/activity_quiz"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
-        android:padding="8dp">
+        android:background="@drawable/background"
+        android:orientation="vertical"
+        android:paddingBottom="16dp"
+        android:paddingLeft="16dp"
+
+        android:paddingRight="16dp"
+        android:paddingTop="16dp"
+        tools:context=".QuestionnaireActivity">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="40dp"
+            android:padding="8dp">
+
+            <TextView
+                android:id="@+id/score_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:text="Questions Number"
+                android:textColor="@android:color/white"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/score"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:text="0"
+                android:textColor="@android:color/white"
+                android:textSize="20sp" />
+
+        </RelativeLayout>
 
         <TextView
-            android:id="@+id/score_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            android:text="Questions Number"
+            android:id="@+id/question"
+            android:layout_width="match_parent"
+            android:layout_height="172dp"
+            android:layout_marginBottom="40dp"
+            android:padding="8dp"
+            android:scrollbars="vertical"
+            android:text="Question"
             android:textColor="@android:color/white"
-            android:textSize="20sp"
-            android:layout_alignParentLeft="true" />
+            android:textSize="30sp" />
 
-        <TextView
-            android:id="@+id/score"
-            android:layout_width="wrap_content"
+
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:text="0"
-            android:textColor="@android:color/white"
-            android:textSize="20sp"
-            android:layout_alignParentRight="true" />
+            android:layout_marginBottom="24dp"
+            android:background="@android:drawable/btn_dropdown"
 
-    </RelativeLayout>
+            android:padding="8dp"
+            android:spinnerMode="dropdown"
+            android:text="bird"
+            android:textColor="#fff" />
 
-    <TextView
-        android:id="@+id/question"
-        android:layout_width="match_parent"
-        android:layout_height="172dp"
-        android:layout_marginBottom="40dp"
-        android:padding="8dp"
-        android:text="Question"
-        android:textColor="@android:color/white"
-        android:textSize="30sp"
-        android:scrollbars = "vertical"/>
+        <EditText
+            android:id="@+id/specifyInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:ems="10"
+            android:hint="Please specify(If needed)"
+            android:inputType="textPersonName"
+            android:padding="8dp"
+            android:textColor="@android:color/white" />
 
+        <Button
+            android:id="@+id/next"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:background="#0091EA"
+            android:padding="8dp"
+            android:text="Next"
+            android:textColor="#fff" />
 
-    <Spinner
-        android:id="@+id/spinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:background="@android:drawable/btn_dropdown"
+        <Button
+            android:id="@+id/quit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:background="#B71C1C"
+            android:padding="8dp"
+            android:text="quit"
+            android:textColor="#fff" />
 
-        android:padding="8dp"
-        android:spinnerMode="dropdown"
-        android:text="bird"
-        android:textColor="#fff" />
-
-    <EditText
-        android:id="@+id/specifyInput"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:ems="10"
-        android:hint="Please specify(If needed)"
-        android:inputType="textPersonName"
-        android:padding="8dp"
-        android:textColor="@android:color/white" />
-
-    <Button
-        android:id="@+id/next"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:background="#0091EA"
-        android:padding="8dp"
-        android:text="Next"
-        android:textColor="#fff" />
-
-    <Button
-        android:id="@+id/quit"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:background="#B71C1C"
-        android:padding="8dp"
-        android:text="quit"
-        android:textColor="#fff" />
-
-</LinearLayout>
+    </LinearLayout>
 </ScrollView>
