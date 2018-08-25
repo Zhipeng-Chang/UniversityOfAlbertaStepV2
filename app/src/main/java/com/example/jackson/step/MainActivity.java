@@ -355,13 +355,11 @@ public class MainActivity extends AppCompatActivity
         if (getActivityUpdatesRequestedState() && Utils.getRequestingLocationUpdates(this)) {
             mRequestUpdatesButton.setEnabled(false);
             mRemoveUpdatesButton.setEnabled(true);
-            startTimerButton.setEnabled(false);
-            stopTimerButton.setEnabled(true);
+
         } else {
             mRequestUpdatesButton.setEnabled(true);
             mRemoveUpdatesButton.setEnabled(false);
-            startTimerButton.setEnabled(true);
-            stopTimerButton.setEnabled(false);
+
         }
     }
 
