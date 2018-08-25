@@ -3,9 +3,11 @@ package com.example.jackson.step;
 import android.app.Service;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.InputType;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
@@ -16,9 +18,12 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.jackson.step.database.DatabaseQuestionaire;
+
 
 public class QuestionnaireActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
+    private static final String TAG="tag";
     private QuestionLibrary mQuestionLibrary = new QuestionLibrary();
 
     private TextView myStageView;
@@ -33,10 +38,18 @@ public class QuestionnaireActivity extends AppCompatActivity implements AdapterV
     private String mSpecify;
     private int mQuestionNumber = 1;
 
+    DatabaseQuestionaire dbQuestionaire;
+    SQLiteDatabase myDB;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_questionnaire);
+
+
+        dbQuestionaire = new DatabaseQuestionaire(this);
+        myDB = dbQuestionaire.getWritableDatabase();
+        dbQuestionaire.onCreate(myDB);
 
         myStageView = (TextView)findViewById(R.id.score);
         mQuestionView = (TextView)findViewById(R.id.question);
@@ -55,6 +68,8 @@ public class QuestionnaireActivity extends AppCompatActivity implements AdapterV
             public void onClick(View view){
                 //My logic for Button goes in here
 
+
+
                 if (mQuestionNumber == 6){
                     SharedPreferences mPreferences = getSharedPreferences("CurrentUser",
                             MODE_PRIVATE);
@@ -64,6 +79,7 @@ public class QuestionnaireActivity extends AppCompatActivity implements AdapterV
                     Intent intent = new Intent(QuestionnaireActivity.this, MainActivity.class);
                     startActivity(intent);
                     finish();
+                    SaveToDatabase(5,spinner.getSelectedItem().toString());
 
                 }
                 else{
@@ -116,12 +132,14 @@ public class QuestionnaireActivity extends AppCompatActivity implements AdapterV
             mAnswer = spinner.getSelectedItem().toString();
             if (mAnswer.contains("(please specify)")){
                 mSpecify = specifyInput.getText().toString();
-                //Toast.makeText(QuestionnaireActivity.this, mSpecify, Toast.LENGTH_SHORT).show();
+                Toast.makeText(QuestionnaireActivity.this, mSpecify, Toast.LENGTH_SHORT).show();
+                SaveToDatabase(mQuestionNumber-1,spinner.getSelectedItem().toString());
                 specifyInput.getText().clear();
                 mSpecify=null;
             }
             else {
-                //Toast.makeText(QuestionnaireActivity.this, mAnswerFromSpinner, Toast.LENGTH_SHORT).show();
+                Toast.makeText(QuestionnaireActivity.this, mAnswerFromSpinner, Toast.LENGTH_SHORT).show();
+                SaveToDatabase(mQuestionNumber-1,mAnswerFromSpinner);
             }
 
         }
@@ -182,6 +200,13 @@ public class QuestionnaireActivity extends AppCompatActivity implements AdapterV
         else{
             return false;
         }
+
+    }
+
+
+    public void SaveToDatabase(int Question, String Answer){
+        Log.i(TAG, "Adding question to dababase:" + Question);
+        dbQuestionaire.insertData(Question, Answer);
 
     }
 

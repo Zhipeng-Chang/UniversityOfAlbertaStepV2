@@ -10,7 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.Locale;
 
 /**
- * Created by Seolha Lee on 2018-02-08.
+ * Created by Jackson on 2018-02-08.
  */
 
 public class DatabaseHelper extends SQLiteOpenHelper {
