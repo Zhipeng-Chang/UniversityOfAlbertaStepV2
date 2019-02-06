@@ -1,0 +1,95 @@
+<resources>
+    <string name="app_name">StepV3</string>
+    <!-- Activity detection strings -->
+    <string name="in_vehicle">In a vehicle</string>
+    <string name="on_bicycle">On a bicycle</string>
+    <string name="on_foot">On foot</string>
+    <string name="running">Running</string>
+    <string name="still">Still</string>
+    <string name="tilting">Tilting</string>
+    <string name="unknown">Unknown activity</string>
+    <string name="walking">Walking</string>
+    <string name="unidentifiable_activity">Unidentifiable activity: %1$d</string>
+
+    <string name="detected_activities_title">Detected Activities</string>
+
+    <string name="request_activity_updates">Request updates</string>
+    <string name="remove_activity_updates">Remove updates</string>
+
+    <string name="activity_updates_enabled">Activity updates enabled</string>
+    <string name="activity_updates_not_enabled">Failed to enable activity updates</string>
+    <string name="activity_updates_removed">Activity updates removed</string>
+    <string name="activity_updates_not_removed">Failed to remove activity updates</string>
+
+    <string name="percent">%1$d%%</string>
+
+    <!-- Location Tracking strings and plurals -->
+
+    <string name="request_updates">Request updates</string>
+    <string name="remove_updates">Remove updates</string>
+    <string name="unknown_location">Unknown location</string>
+
+    <string name="batched_location_updates">Batched location updates</string>
+
+    <plurals name="num_locations_reported">
+        <item quantity="zero">No location reported</item>
+        <item quantity="one">One location reported</item>
+        <item quantity="other">%d locations reported</item>
+    </plurals>
+
+    <!-- Error strings -->
+    <string name="geofence_not_available">Geofence service is not available now</string>
+    <string name="geofence_too_many_geofences">Your app has registered too many geofences</string>
+    <string name="geofence_too_many_pending_intents">
+        You have provided too many PendingIntents to the addGeofences() call
+    </string>
+    <string name="unknown_geofence_error">
+        Unknown error: the Geofence service is not available now
+    </string>
+    <string name="geofence_transition_invalid_type">
+        Geofence transition error: invalid transition type %1$d
+    </string>
+
+    <!-- Transition type strings -->
+    <string name="geofence_transition_entered">Entered</string>
+    <string name="geofence_transition_exited">Exited</string>
+    <string name="geofence_transition_dwell">Dwell</string>
+    <string name="unknown_geofence_transition">Unknown Transition</string>
+    <string name="city">City</string>
+    <string name="recenter_the_map">recenter the map</string>
+    <string name="start_tracking">start tracking</string>
+    <string name="finish_tracking">finish tracking</string>
+    <string name="start_timer">start timer</string>
+    <string name="stop_timer">stop timer</string>
+    <string name="stop">Stop</string>
+    <string name="start">Start</string>
+    <string name="Agree">Agree</string>
+    <string name="Decline">Decline</string>
+    <string name="consent">consent</string>
+    <string name="consent_text">You may have seen or heard several things in the news recently about the future of the Aeroplan program.   I want to reassure you that we are committed to building Canada\'s best travel loyalty program providing you with exceptional value on flight rewards, increased flexibility and an enhanced experience. This includes the ability to redeem your miles for any seat on any airline (including Air Canada), at any time, to anywhere you want to go come July 2020.   We\'re proud to announce a comprehensive partnership with Porter that will allow you to earn and redeem Aeroplan Miles with them beginning in July 2020. We\'re also in active discussions with other major airlines and airline networks, with more exciting announcements to come. We remain committed to maintaining flight reward mileage levels that start at the same amounts as today on members\' most redeemed destinations. For more details about our future plans, click here.   In the meantime, you will continue to earn and redeem with Air Canada and Star Alliance member airlines through June 2020 under our current agreement.   I realize that you will have questions about the program between now and 2020. I will continue to provide you with information as we work toward building a better Aeroplan program for you. You can find answers to more questions here.</string>
+    <string name="new_consent">Research Ethics
+        Steps is an application developed as part of a research project led by Dr. Rob Shields at the University of Alberta, Edmonton, Canada. Its use is governed by University of Alberta’s ethics guidelines.
+        A.\tPURPOSE
+        The purpose of this research application and project is to collect and analyze walking experience data with smart phones. The researchers at University of Alberta will use behavioral and perceptual data (routes, speed, time walking and waiting, perception of walkability, etc.) to better understand how people move around cities, and how they perceive different streets. Reports showing anonymous, aggregate data will be used in presentations, publications and/or the internet.
+        B.\tPROCEDURES
+        a.\tParticipation in this project will be done through your Android phone by using an app.
+        b.\tYou can use the different features of the app at your discretion.
+        c.\tThe app collects demographic profile information to analyze your walking data. Your answers will be completely anonymous, or you can also choose not to answer these questions.
+        d.\tYou can use the application for as long as you wish. You can cancel your participation in this research at any time by uninstalling the app, but the information that you have already submitted will be kept by the research team.
+        e.\tDuring your participation in the research, locational information will be collected automatically and then either uploaded or transmitted and saved securely on servers hosted in Canada and administered by ESRI.
+        f.\tRaw data collected as part of this project will only be used in line with the purpose of this research. Raw data will only be available to the research team at the University of Alberta, subject to the Personal Information Protection Act in the Province of Alberta, Canada.
+        g.\tThe privacy of data collected will be respected and the information that could reveal the identity of participants, directly or indirectly, will not be disseminated.
+        C.\tPHONE OPERATION
+        a.\tOur prototype application does not exchange data with third party applications on your phone. The data will not be sold or shared with third parties.
+        b.\tThe application will use battery power at a rate depending on your phone and the location.
+        c.\tOur application is designed not to use cellular data. However, your phone settings may need to be adjusted to prevent cellular-enhanced GPS location positioning.
+        d.\tYou are responsible for any consumption of your cellular data allowance.
+        e.\tThe application does not require monitoring or to be held in hand while walking.
+        f.\tYou may ignore the phone entirely during your walks.
+        g.\tPlease maintain attention to sidewalk and traffic conditions and pedestrian signals. Do not start to cross a crosswalk when the orange signal is flashing. Obey applicable laws.
+        D.\t RISKS Participation in this research represents no known or foreseeable risk.
+        E.\tBENEFITS Pedestrian behavioral and perceptual data will allow the analysis of walkability in your city, thus representing a benefit to society.
+        F.\tCONDITIONS OF PARTICIPATION I understand that I must be 18 years of age or older to participate in this research, or have authorization from my parents or legal guardians to use the STEPS application. I understand that my participation is entirely voluntary and that I am free to withdraw my consent and discontinue my participation at any time (by uninstalling the Steps app) without negative consequences. I understand that should I withdraw from the research, any data collected up until my withdrawal will remain as part of the project’s database. I understand that my participation in this research is anonymous (i. e. researchers will not share my identity). I understand that the results from analysis of this data may be published, but will not be presented in such a way that my identity could be revealed.
+        G.\tDECLARATION OF CONSENT I ACCEPT THESE CONDITIONS (mandatory to participate in the study) If at any time you have questions or comments about the proposed research, please send an email to rshields@ualberta.ca By pressing the button below and continuing use of this application, I confirm that I have read and understood the above terms, and I attest to the fact that my consent is informed, that all of my questions have been answered to my satisfaction and that I have had sufficient time to decide whether I want to participate in this research. I freely and voluntarily consent to participate in this research.  YES, I WANT TO PARTICIPATE
+    </string>
+</resources>
